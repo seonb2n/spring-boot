@@ -14,7 +14,7 @@ import java.sql.Statement;
 public class H2Runner implements ApplicationRunner {
 
     @Autowired
-    DataSource dataSource;
+    DataSource dataSource;    
 
     @Autowired
     JdbcTemplate jdbcTemplate;
