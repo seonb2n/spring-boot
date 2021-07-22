@@ -7,11 +7,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
-    hibernate:
-      ddl-auto: create
 
 server:
   port: 8070
-logging:
-  level:
-    root: trace
