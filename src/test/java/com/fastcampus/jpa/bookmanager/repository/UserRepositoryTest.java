@@ -9,6 +9,8 @@ import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,12 +31,16 @@ class UserRepositoryTest {
 
     @Test
     void crud() { // create, read, update, delete
+        Page<User> users = userRepository.findAll(PageRequest.of(1,3));
 
-        userRepository.deleteAllInBatch();
+        System.out.println("Page : "+users);
+        System.out.println("total Elements : "+users.getTotalElements());
+        System.out.println("total Pages : " + users.getTotalPages());
+        System.out.println("number Of Elements : " + users.getNumberOfElements());
+        System.out.println("sort : " + users.getSort());
+        System.out.println("size : " + users.getSize());
 
-        System.out.println("---------------------");
-        userRepository.findAll().forEach(System.out::println);
-        System.out.println("---------------------");
+        users.getContent().forEach(System.out::println);
 
     }
 }
