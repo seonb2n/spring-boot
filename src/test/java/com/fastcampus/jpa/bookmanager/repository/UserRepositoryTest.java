@@ -2,6 +2,7 @@ package com.fastcampus.jpa.bookmanager.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.contains;
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.endsWith;
 
 import com.fastcampus.jpa.bookmanager.domain.User;
@@ -31,11 +32,17 @@ class UserRepositoryTest {
     @Test
     void crud() { // create, read, update, delete
 
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withIgnorePaths("name")
-                .withMatcher("email", endsWith());
+//        ExampleMatcher matcher = ExampleMatcher.matching()
+//                .withIgnorePaths("name")
+//                .withMatcher("email", endsWith());
+//
+//        Example<User> example = Example.of(new User("ma", "naver.com"), matcher);
 
-        Example<User> example = Example.of(new User("ma", "naver.com"), matcher);
+        User user = new User();
+        user.setEmail("slow");
+
+        ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("email", contains());
+        Example<User> example = Example.of(user, matcher);
 
         userRepository.findAll(example).forEach(System.out::println);
 
