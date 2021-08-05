@@ -29,10 +29,12 @@ class UserRepositoryTest {
 
     @Test
     void crud() { // create, read, update, delete
-        userRepository.save(new User("new Martin", "newMartin@naver.com"));
 
-        userRepository.flush();
+        userRepository.deleteAllInBatch();
 
+        System.out.println("---------------------");
         userRepository.findAll().forEach(System.out::println);
+        System.out.println("---------------------");
+
     }
 }
