@@ -18,10 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author Martin
- * @since 2021/03/10
- */
+
 @WebAppConfiguration
 @SpringBootTest
 @Transactional
@@ -31,20 +28,25 @@ class UserRepositoryTest {
 
     @Test
     void crud() { // create, read, update, delete
+        userRepository.save(new User("jake", "jake12@naver.com"));
 
-//        ExampleMatcher matcher = ExampleMatcher.matching()
-//                .withIgnorePaths("name")
-//                .withMatcher("email", endsWith());
-//
-//        Example<User> example = Example.of(new User("ma", "naver.com"), matcher);
+        User user = userRepository.findById(1L).orElse(null);
+        user.setEmail("martin-new@naver.com");
 
-        User user = new User();
-        user.setEmail("slow");
+        userRepository.save(user);
 
-        ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("email", contains());
-        Example<User> example = Example.of(user, matcher);
+    }
 
-        userRepository.findAll(example).forEach(System.out::println);
+    @Test
+    void select() {
+
+        System.out.println("findByName : " + userRepository.findByName("dennis"));
+        System.out.println("getByName : " + userRepository.getByName("dennis"));
+        System.out.println("readByName : " + userRepository.readByName("dennis"));
+        System.out.println("queryByName : " + userRepository.queryByName("dennis"));
+        System.out.println("searchByName : " + userRepository.searchByName("dennis"));
+        System.out.println("streamByName : " + userRepository.streamByName("dennis"));
+        System.out.println("findUserByName : " + userRepository.findUserByName("dennis"));
 
     }
 }

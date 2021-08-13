@@ -26,10 +26,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-/**
- * @author Martin
- * @since 2021/03/10
- */
+
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor

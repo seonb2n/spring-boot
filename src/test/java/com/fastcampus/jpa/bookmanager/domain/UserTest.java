@@ -3,10 +3,7 @@ package com.fastcampus.jpa.bookmanager.domain;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
-/**
- * @author Martin
- * @since 2021/03/10
- */
+
 class UserTest {
     @Test
     void test() {
