@@ -24,6 +24,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> searchByName(String name);
     Optional<User> streamByName(String name);
     Optional<User> findSomethingByName(String name);
-
+    List<User> findFirst1ByName(String name);
+    List<User> findTop1ByName(String name);
 
 }

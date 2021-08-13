@@ -49,5 +49,7 @@ class UserRepositoryTest {
         System.out.println("findUserByName : " + userRepository.findUserByName("dennis"));
         System.out.println("findSomethingByName : " + userRepository.findSomethingByName("dennis"));
 
+        System.out.println("findFirst1ByName : " + userRepository.findFirst1ByName("martin"));
+        System.out.println("findTop1ByName : " + userRepository.findTop1ByName("martin"));
     }
 }
