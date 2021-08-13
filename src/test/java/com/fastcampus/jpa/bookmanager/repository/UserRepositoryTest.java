@@ -47,6 +47,7 @@ class UserRepositoryTest {
         System.out.println("searchByName : " + userRepository.searchByName("dennis"));
         System.out.println("streamByName : " + userRepository.streamByName("dennis"));
         System.out.println("findUserByName : " + userRepository.findUserByName("dennis"));
+        System.out.println("findSomethingByName : " + userRepository.findSomethingByName("dennis"));
 
     }
 }

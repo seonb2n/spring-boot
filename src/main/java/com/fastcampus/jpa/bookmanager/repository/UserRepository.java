@@ -23,6 +23,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> queryByName(String name);
     Optional<User> searchByName(String name);
     Optional<User> streamByName(String name);
+    Optional<User> findSomethingByName(String name);
 
 
 }
