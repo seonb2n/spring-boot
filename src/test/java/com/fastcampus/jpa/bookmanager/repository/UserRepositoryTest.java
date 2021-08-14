@@ -7,6 +7,7 @@ import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatc
 
 import com.fastcampus.jpa.bookmanager.domain.User;
 
+import jdk.vm.ci.meta.Local;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.*;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,5 +53,12 @@ class UserRepositoryTest {
 
         System.out.println("findFirst1ByName : " + userRepository.findFirst1ByName("martin"));
         System.out.println("findTop1ByName : " + userRepository.findTop1ByName("martin"));
+
+        System.out.println("findByEmailAndName : " + userRepository.findByEmailAndName("martin@naver.com","martin"));
+        System.out.println("findByEmailOrName : " + userRepository.findByEmailOrName("martin@naver.com","martin"));
+
+        System.out.println("findbyCreatedAtAfter : "+ userRepository.findByCreatedAtAfter(LocalDateTime.now().minusDays(1L)));
+        System.out.println("findByCreatedAtGreaterThan" + userRepository.findByCreatedAtGreaterThan(LocalDateTime.now().minusDays(1L)));
     }
+
 }

@@ -27,4 +27,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findFirst1ByName(String name);
     List<User> findTop1ByName(String name);
 
+    List<User> findByEmailAndName(String email, String name);
+    List<User> findByEmailOrName(String email, String name);
+
+    List<User> findByCreatedAtAfter(LocalDateTime yesterday);
+    List<User> findByIdAfter(Long id);
+    List<User> findByCreatedAtGreaterThan(LocalDateTime yesterday);
+
+    List<User> findByCreatedAtBetween(LocalDateTime yesterday, LocalDateTime tomorrow);
+
+    List<User> findByIdIsNotNull();
 }
