@@ -63,6 +63,7 @@ class UserRepositoryTest {
         System.out.println("findByIdIsNotNull : "+ userRepository.findByIdIsNotNull());
         System.out.println("findByAddressIsNotEmpty : "+ userRepository.findByAddressIsNotEmpty());
 
+        System.out.println("findByNmaeIn : " + userRepository.findByNameIn(Lists.newArrayList("mar")));
     }
 
 }
