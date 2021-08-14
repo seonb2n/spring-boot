@@ -58,7 +58,11 @@ class UserRepositoryTest {
         System.out.println("findByEmailOrName : " + userRepository.findByEmailOrName("martin@naver.com","martin"));
 
         System.out.println("findbyCreatedAtAfter : "+ userRepository.findByCreatedAtAfter(LocalDateTime.now().minusDays(1L)));
-        System.out.println("findByCreatedAtGreaterThan" + userRepository.findByCreatedAtGreaterThan(LocalDateTime.now().minusDays(1L)));
+        System.out.println("findByCreatedAtGreaterThan : " + userRepository.findByCreatedAtGreaterThan(LocalDateTime.now().minusDays(1L)));
+
+        System.out.println("findByIdIsNotNull : "+ userRepository.findByIdIsNotNull());
+        System.out.println("findByAddressIsNotEmpty : "+ userRepository.findByAddressIsNotEmpty());
+
     }
 
 }
