@@ -73,6 +73,7 @@ class UserRepositoryTest {
         System.out.println("findFirstByNameOrderByIdDescEmailAsc" + userRepository.findFirstByNameOrderByIdDescEmailAsc("martin"));
         System.out.println("findFirstByNameWithSortParams : " + userRepository.findFirstByName("martin", Sort.by(Sort.Order.desc("id"))));
         System.out.println("findFirstByNameWithSortParams : " + userRepository.findFirstByName("martin", getSort()));
+        System.out.println("findByNameWithPaging : " + userRepository.findByName("martin", PageRequest.of(0, 1, getSort())).getContent());
     }
 
     private Sort getSort() {

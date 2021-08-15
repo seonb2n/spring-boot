@@ -59,4 +59,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findFirstByNameOrderByIdDescEmailAsc(String name);
 
     List<User> findFirstByName(String name, Sort sort);
+
+    Page<User> findByName(String name, Pageable pageable);
+
 }
