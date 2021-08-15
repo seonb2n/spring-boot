@@ -69,8 +69,17 @@ class UserRepositoryTest {
     @Test
     void pagingAndSortingTest() {
         System.out.println("findTop1ByName : " + userRepository.findTop1ByName("martin"));
-        //System.out.println("findLast1ByName : " + userRepository.findLast1ByName("martin"));
         System.out.println("findTop1ByNameOrderByIdDesc : " + userRepository.findTop1ByNameOrderByIdDesc("martin"));
+        System.out.println("findFirstByNameOrderByIdDescEmailAsc" + userRepository.findFirstByNameOrderByIdDescEmailAsc("martin"));
+        System.out.println("findFirstByNameWithSortParams : " + userRepository.findFirstByName("martin", Sort.by(Sort.Order.desc("id"))));
+        System.out.println("findFirstByNameWithSortParams : " + userRepository.findFirstByName("martin", getSort()));
+    }
+
+    private Sort getSort() {
+        return Sort.by(
+                Sort.Order.desc("id"),
+                Sort.Order.desc("email")
+        );
     }
 
 }

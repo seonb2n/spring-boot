@@ -53,4 +53,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findLast1ByName(String name);
 
     List<User> findTop1ByNameOrderByIdDesc(String name);
+
+    List<User> findFirstByNameOrderByIdDesc(String name);
+
+    List<User> findFirstByNameOrderByIdDescEmailAsc(String name);
+
+    List<User> findFirstByName(String name, Sort sort);
 }
