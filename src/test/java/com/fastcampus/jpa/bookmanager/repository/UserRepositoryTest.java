@@ -66,4 +66,11 @@ class UserRepositoryTest {
         System.out.println("findByNmaeIn : " + userRepository.findByNameIn(Lists.newArrayList("mar")));
     }
 
+    @Test
+    void pagingAndSortingTest() {
+        System.out.println("findTop1ByName : " + userRepository.findTop1ByName("martin"));
+        //System.out.println("findLast1ByName : " + userRepository.findLast1ByName("martin"));
+        System.out.println("findTop1ByNameOrderByIdDesc : " + userRepository.findTop1ByNameOrderByIdDesc("martin"));
+    }
+
 }

@@ -17,7 +17,10 @@ import javax.swing.text.html.Option;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByName(String name);
 
-    Optional<User> findUserByName(String name);
+    Set<User> findUserByNameIs(String name);
+    Set<User> findUserByName(String name);
+    Set<User> findUserByNameEquals(String name);
+
     Optional<User> getByName(String name);
     Optional<User> readByName(String name);
     Optional<User> queryByName(String name);
@@ -45,4 +48,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByNameEndingWith(String name);
     List<User> findByNameContains(String name);
 
+    List<User> findByNameLike(String name);
+
+    List<User> findLast1ByName(String name);
+
+    List<User> findTop1ByNameOrderByIdDesc(String name);
 }
