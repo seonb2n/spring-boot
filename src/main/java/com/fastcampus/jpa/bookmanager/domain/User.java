@@ -3,20 +3,8 @@ package com.fastcampus.jpa.bookmanager.domain;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -44,9 +32,17 @@ public class User {
     @NonNull
     private String email;
 
+    @Enumerated(value = EnumType.STRING)
+    private Gender gender;
+
+    @Column(updatable = false)
     private LocalDateTime createdAt;
+
     private LocalDateTime updatedAt;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Address> address;
+//    @Transient
+//    private String testData;
+
+//    @OneToMany(fetch = FetchType.EAGER)
+//    private List<Address> address;
 }

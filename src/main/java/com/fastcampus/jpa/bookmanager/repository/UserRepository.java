@@ -40,7 +40,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByCreatedAtBetween(LocalDateTime yesterday, LocalDateTime tomorrow);
 
     List<User> findByIdIsNotNull();
-    List<User> findByAddressIsNotEmpty();
 
     List<User> findByNameIn(List<String> names);
 
@@ -61,5 +60,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findFirstByName(String name, Sort sort);
 
     Page<User> findByName(String name, Pageable pageable);
+
+    @Query(value = "select * from user limit 1;", nativeQuery = true)
+    Map<String, Object> findRawRecord();
 
 }

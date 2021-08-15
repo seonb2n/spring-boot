@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.contains;
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.endsWith;
 
+import com.fastcampus.jpa.bookmanager.domain.Gender;
 import com.fastcampus.jpa.bookmanager.domain.User;
 
 import jdk.vm.ci.meta.Local;
@@ -61,7 +62,6 @@ class UserRepositoryTest {
         System.out.println("findByCreatedAtGreaterThan : " + userRepository.findByCreatedAtGreaterThan(LocalDateTime.now().minusDays(1L)));
 
         System.out.println("findByIdIsNotNull : "+ userRepository.findByIdIsNotNull());
-        System.out.println("findByAddressIsNotEmpty : "+ userRepository.findByAddressIsNotEmpty());
 
         System.out.println("findByNmaeIn : " + userRepository.findByNameIn(Lists.newArrayList("mar")));
     }
@@ -83,4 +83,31 @@ class UserRepositoryTest {
         );
     }
 
+    @Test
+    void insertAndUpdateTest() {
+        User user = new User();
+        user.setName("martin");
+        user.setEmail("martin22@naver.com");
+
+        userRepository.save(user);
+
+        User user2 = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+        user2.setName("marrrtttin");
+
+        userRepository.save(user2);
+
+        System.out.println(userRepository.findByName("marrrtttin"));
+    }
+
+    @Test
+    void enumTest() {
+        User user = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+        user.setGender(Gender.MALE);
+
+        userRepository.save(user);
+
+        userRepository.findAll().forEach(System.out::println);
+
+        System.out.println(userRepository.findRawRecord().get("gender"));
+    }
 }
