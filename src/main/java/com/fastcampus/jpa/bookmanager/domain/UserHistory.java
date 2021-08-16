@@ -1,7 +1,10 @@
 package com.fastcampus.jpa.bookmanager.domain;
 
+import com.fastcampus.jpa.bookmanager.domain.listener.Auditable;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -15,8 +18,9 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @Data
-@EntityListeners(value = AuditingEntityListener.class)
-public class UserHistory implements Auditable{
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class UserHistory extends  BaseEntity implements Auditable {
     @Id
     @GeneratedValue
     private Long id;
@@ -27,8 +31,4 @@ public class UserHistory implements Auditable{
 
     private String email;
 
-    @CreatedDate
-    private LocalDateTime createdAt;
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
 }
