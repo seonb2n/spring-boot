@@ -21,7 +21,7 @@ import lombok.ToString;
 @Data
 @Builder
 @Entity
-@EntityListeners(value = MyEntityListener.class)
+@EntityListeners(value = {MyEntityListener.class, UserEntityListener.class})
 public class User implements Auditable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
