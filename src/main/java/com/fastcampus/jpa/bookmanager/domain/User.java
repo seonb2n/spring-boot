@@ -21,7 +21,8 @@ import lombok.ToString;
 @Data
 @Builder
 @Entity
-public class User {
+@EntityListeners(value = MyEntityListener.class)
+public class User implements Auditable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -46,39 +47,16 @@ public class User {
 //    @OneToMany(fetch = FetchType.EAGER)
 //    private List<Address> address;
 
-    @PrePersist //insert method 호출 전
-    public void prePersist() {
-        System.out.println(">>>> prePersist");
-    }
-
-    @PostPersist //insert method 호출 후
-    public void postPersist() {
-        System.out.println(">>>> postPersist");
-    }
-
-    @PreUpdate //merge method 호출 전
-    public void preUpdate() {
-        System.out.println(">>> preUpdate");
-    }
-
-    @PostUpdate //merge method 호출 이후
-    public void postUpdate() {
-        System.out.println(">>> postUpdate");
-    }
-
-    @PreRemove //delete method 호출 전
-    public void preRemove() {
-        System.out.println(">>> preRemove");
-    }
-
-    @PostRemove //delete method 호출 후
-    public void postRemove() {
-        System.out.println(">>> postRemove");
-    }
-
-    @PostLoad // select method 호출 후
-    public void postLoad() {
-        System.out.println(">>> postLoad");
-    }
+//    @PrePersist //insert method 호출 전
+//    public void prePersist() {
+//        this.createdAt = LocalDateTime.now();
+//        this.updatedAt = LocalDateTime.now();
+//    }
+//
+//
+//    @PreUpdate //merge method 호출 전
+//    public void preUpdate() {
+//        this.updatedAt = LocalDateTime.now();
+//    }
 
 }
