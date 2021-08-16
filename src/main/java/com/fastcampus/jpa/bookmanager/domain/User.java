@@ -13,6 +13,10 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
 @NoArgsConstructor
@@ -21,7 +25,7 @@ import lombok.ToString;
 @Data
 @Builder
 @Entity
-@EntityListeners(value = {MyEntityListener.class, UserEntityListener.class})
+@EntityListeners(value = {AuditingEntityListener.class, UserEntityListener.class})
 public class User implements Auditable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,8 +41,10 @@ public class User implements Auditable{
     private Gender gender;
 
     @Column(updatable = false)
+    @CreatedDate
     private LocalDateTime createdAt;
 
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 
 //    @Transient
