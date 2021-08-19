@@ -18,6 +18,7 @@ public class UserEntityListener {
     public void prePersistAndPreUpdate(Object o) {
 
         UserHistoryRepository userHistoryRepository = BeanUtils.getBean(UserHistoryRepository.class);
+        //repository 는 bean 객체로 생성이 안되서 이렇게 수동으로 생성 주입해줘야 한다.
 
         User user = (User) o;
         UserHistory userHistory = new UserHistory();

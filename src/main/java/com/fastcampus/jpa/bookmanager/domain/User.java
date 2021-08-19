@@ -20,7 +20,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Builder
 @Entity
 @EntityListeners(value = UserEntityListener.class)
-public class User extends BaseEntity implements Auditable{
+public class User extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
