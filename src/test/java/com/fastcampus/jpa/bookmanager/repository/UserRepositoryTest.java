@@ -168,4 +168,18 @@ class UserRepositoryTest {
         userHistoryRepository.findAll().forEach(System.out::println);
 
     }
+
+    @Test
+    void userRelationTest() {
+        User user = new User();
+        user.setName("david");
+        user.setEmail("david@naver.com");
+        user.setGender(Gender.MALE);
+
+        userRepository.save(user);
+
+        userRepository.findAll().forEach(System.out::println);
+
+        userHistoryRepository.findAll().forEach(System.out::println);
+    }
 }

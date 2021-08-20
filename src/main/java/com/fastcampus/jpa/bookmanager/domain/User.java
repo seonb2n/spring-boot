@@ -34,29 +34,4 @@ public class User extends BaseEntity{
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
-//    @Column(updatable = false)
-//    @CreatedDate
-//    private LocalDateTime createdAt;
-//
-//    @LastModifiedDate
-//    private LocalDateTime updatedAt;
-
-//    @Transient
-//    private String testData;
-
-//    @OneToMany(fetch = FetchType.EAGER)
-//    private List<Address> address;
-
-//    @PrePersist //insert method 호출 전
-//    public void prePersist() {
-//        this.createdAt = LocalDateTime.now();
-//        this.updatedAt = LocalDateTime.now();
-//    }
-//
-//
-//    @PreUpdate //merge method 호출 전
-//    public void preUpdate() {
-//        this.updatedAt = LocalDateTime.now();
-//    }
-
 }
