@@ -12,15 +12,11 @@ import javax.persistence.PostUpdate;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
-
-@Component
 public class UserEntityListener {
-
     @PostPersist
     @PostUpdate
     public void prePersistAndPreUpdate(Object o) {
-
-        UserHistoryRepository userHistoryRepository = BeanUtils.getBean(UserHistoryRepository.class);        //repository 는 bean 객체로 생성이 안되서 이렇게 수동으로 생성 주입해줘야 한다.
+        UserHistoryRepository userHistoryRepository = BeanUtils.getBean(UserHistoryRepository.class);
 
         User user = (User) o;
 
@@ -30,6 +26,6 @@ public class UserEntityListener {
         userHistory.setEmail(user.getEmail());
 
         userHistoryRepository.save(userHistory);
-
     }
 }
+

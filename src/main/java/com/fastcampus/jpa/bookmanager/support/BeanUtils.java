@@ -18,3 +18,4 @@ public class BeanUtils implements ApplicationContextAware {
         return applicationContext.getBean(clazz);
     }
 }
+

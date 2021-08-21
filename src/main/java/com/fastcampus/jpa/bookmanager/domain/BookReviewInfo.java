@@ -12,10 +12,12 @@ import javax.persistence.*;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class BookReviewInfo extends BaseEntity{
+public class BookReviewInfo extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+//    private Long bookId;
 
     @OneToOne(optional = false)
     private Book book;
@@ -23,6 +25,5 @@ public class BookReviewInfo extends BaseEntity{
     private float averageReviewScore;
 
     private int reviewCount;
-
-
 }
+
