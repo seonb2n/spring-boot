@@ -4,7 +4,6 @@ import com.fastcampus.jpa.bookmanager.domain.User;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import javax.swing.text.html.Option;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     Set<User> findByName(String name);
@@ -87,5 +85,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value = "select * from user limit 1;", nativeQuery = true)
     Map<String, Object> findRawRecord();
-
 }

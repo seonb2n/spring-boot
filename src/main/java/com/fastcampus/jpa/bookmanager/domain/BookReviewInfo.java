@@ -1,11 +1,15 @@
 package com.fastcampus.jpa.bookmanager.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
@@ -26,4 +30,3 @@ public class BookReviewInfo extends BaseEntity {
 
     private int reviewCount;
 }
-
