@@ -158,12 +158,11 @@ class UserRepositoryTest {
         User user = new User();
         user.setEmail("martin-new@naver.com");
         user.setName("martin-new");
-
+        user.setGender(Gender.MALE);
         userRepository.save(user);
 
         user.setName("martin-new-new");
-
-        userRepository.save(user);
+        userRepository.flush();
 
         userHistoryRepository.findAll().forEach(System.out::println);
 
@@ -175,10 +174,14 @@ class UserRepositoryTest {
         user.setName("david");
         user.setEmail("david@naver.com");
         user.setGender(Gender.MALE);
-
         userRepository.save(user);
 
-        userRepository.findAll().forEach(System.out::println);
+        user.setName("Jason");
+        userRepository.flush();
+
+        user.setName("Jason-new");
+
+        userRepository.flush();
 
         userHistoryRepository.findAll().forEach(System.out::println);
     }
