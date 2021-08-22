@@ -21,7 +21,6 @@ public class Company {
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "compnay_id")
     @ToString.Exclude
     private List<Product> products = new ArrayList<>();
 

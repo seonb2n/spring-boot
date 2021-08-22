@@ -6,6 +6,9 @@ import lombok.ToString;
 import org.yaml.snakeyaml.events.Event;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -18,8 +21,17 @@ public class Product {
 
     private String name;
 
-    private int price;
+    private Long price;
 
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private Company company;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Buyer> buyers = new ArrayList<>();
+
+    public void addBuyers(Buyer... buyers) {
+        Collections.addAll(this.buyers, buyers);
+    }
+
 }
