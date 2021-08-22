@@ -2,8 +2,12 @@ package com.fastcampus.jpa.bookmanager.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,9 +20,13 @@ public class Company {
 
     private String name;
 
-    @OneToOne
-    @JoinColumn(name="company_id")
-    private Blog blog;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "compnay_id")
+    @ToString.Exclude
+    private List<Product> products = new ArrayList<>();
 
+    public void addProducts(Product... products) {
+        Collections.addAll(this.products, products);
+    }
 
 }

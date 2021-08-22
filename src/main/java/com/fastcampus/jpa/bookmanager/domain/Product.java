@@ -2,12 +2,10 @@ package com.fastcampus.jpa.bookmanager.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.yaml.snakeyaml.events.Event;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
@@ -21,4 +19,7 @@ public class Product {
     private String name;
 
     private int price;
+
+    @ManyToOne
+    private Company company;
 }

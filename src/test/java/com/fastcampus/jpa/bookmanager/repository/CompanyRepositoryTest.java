@@ -22,21 +22,23 @@ class CompanyRepositoryTest {
     BlogRepository blogRepository;
 
     @Test
-    void OneToOneTest() {
-        givenCompany("New Com", givenBlog("New com's good blog"));
-        Company company = companyRepository.findById(1L).get();
-        Blog blog = company.getBlog();
-        blog.setCompany(company);
-        blogRepository.saveAndFlush(blog);
+    void OneToManyTest() {
+        Company company = givenCompany("New Com");
+        Product p1 = givenProduct("product1", company);
+        Product p2 = givenProduct("product2", company);
+        Product p3 = givenProduct("product3", company);
 
-        System.out.println(blog);
-        System.out.println(company);
+        company.addProducts(p1, p2, p3);
+        companyRepository.saveAndFlush(company);
+
+        productRepository.findAll().forEach(System.out::println);
+        System.out.println(companyRepository.findById(1L).get().getProducts());
     }
 
-    private Company givenCompany(String name, Blog blog) {
+    private Company givenCompany(String name) {
+
         Company company = new Company();
         company.setName(name);
-        company.setBlog(blog);
         return companyRepository.save(company);
     }
 
@@ -44,6 +46,13 @@ class CompanyRepositoryTest {
         Blog blog = new Blog();
         blog.setContent(content);
         return blogRepository.save(blog);
+    }
+
+    private Product givenProduct(String name, Company company) {
+        Product product = new Product();
+        product.setName(name);
+        product.setCompany(company);
+        return productRepository.save(product);
     }
 
 }

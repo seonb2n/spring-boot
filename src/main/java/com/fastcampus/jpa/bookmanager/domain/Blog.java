@@ -16,7 +16,5 @@ public class Blog {
 
     private String content;
 
-    @OneToOne
-    @ToString.Exclude
-    private Company company;
+
 }
