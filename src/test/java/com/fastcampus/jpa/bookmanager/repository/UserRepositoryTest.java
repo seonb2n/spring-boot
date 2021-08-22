@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
  * @since 2021/03/10
  */
 @SpringBootTest
+@Transactional
 class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;

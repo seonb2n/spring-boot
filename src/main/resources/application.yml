@@ -14,6 +14,7 @@ spring:
     url: jdbc:mysql://localhost:3306/book_manager
     username: root
     password: tiger
+    initialization-mode: always
 
   main:
     allow-bean-definition-overriding: true
