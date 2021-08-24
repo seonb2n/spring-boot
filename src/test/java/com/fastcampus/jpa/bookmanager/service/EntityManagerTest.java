@@ -46,7 +46,6 @@ public class EntityManagerTest {
         user.setEmail("martin-new@naver.com");
 
         userRepository.save(user);
-        //transaction 이 없으니 별개로 각각의 query가 실행되며 update 됨.
 
         userRepository.flush();
         //@Transactional 로 인해서 값이 별개로 save 되는 게 아니라, flush 로 한번에 db에 업데이트된다.
