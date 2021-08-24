@@ -1,9 +1,12 @@
 package com.fastcampus.jpa.bookmanager.service;
 
+import com.fastcampus.jpa.bookmanager.domain.User;
 import com.fastcampus.jpa.bookmanager.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import javax.persistence.EntityManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,11 +16,14 @@ class UserServiceTest {
     private UserService userService;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private EntityManager entityManager;
 
     @Test
     void test() {
         userService.put();
 
-        System.out.println(">>>" + userRepository.findByEmail("newUser@naver.com"));
+        userRepository.findAll().forEach(System.out::println);
     }
+
 }
