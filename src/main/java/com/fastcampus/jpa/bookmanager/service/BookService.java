@@ -18,7 +18,7 @@ public class BookService {
     //생성자 주입. final 이므로 생성자를 자동으로 생성해줌. bean 이 생성되면서 주입된다.
 
     @Transactional
-    public void putBookAndAuthor() {
+    public void putBookAndAuthor() throws Exception{
         Book book = new Book();
         book.setName("Start JPA");
 
@@ -29,7 +29,7 @@ public class BookService {
 
         authorRepository.save(author);
 
-        throw new RuntimeException("Error !! Do not commit to db");
+        throw new Exception("Error !! Do not commit to db");
     }
 
 }

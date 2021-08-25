@@ -24,7 +24,7 @@ class BookServiceTest {
 
         try {
             bookService.putBookAndAuthor();
-        } catch (RuntimeException e){
+        } catch (Exception e){
             System.out.println(">>> " + e.getMessage());
         }
 
