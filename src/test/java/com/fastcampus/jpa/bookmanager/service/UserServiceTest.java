@@ -22,7 +22,6 @@ class UserServiceTest {
     @Test
     void test() {
         userService.put();
-
         userRepository.findAll().forEach(System.out::println);
     }
 
