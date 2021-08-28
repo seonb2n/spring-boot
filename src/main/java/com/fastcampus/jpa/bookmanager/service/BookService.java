@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -21,20 +22,29 @@ public class BookService {
     private final AuthorRepository authorRepository;
     //생성자 주입. final 이므로 생성자를 자동으로 생성해줌. bean 이 생성되면서 주입된다.
     private final EntityManager entityManager;
+    private final AuthorService authorService;
 
-    @Transactional
+
+    @Transactional(propagation = Propagation.REQUIRED)
     void putBookAndAuthor(){
         Book book = new Book();
         book.setName("Start JPA");
 
         bookRepository.save(book);
 
-        Author author = new Author();
-        author.setName("martin");
+        try {
+            authorService.putAuthor();
+        } catch (RuntimeException e) {
 
-        authorRepository.save(author);
+        }
+//        throw new RuntimeException("Error !! Transaction error occurs");
 
-        throw new RuntimeException("Error !! Do not commit to db");
+//        Author author = new Author();
+//        author.setName("martin");
+//
+//        authorRepository.save(author);
+//
+//        throw new RuntimeException("Error !! Do not commit to db");
     }
 
     @Transactional(isolation = Isolation.REPEATABLE_READ)
