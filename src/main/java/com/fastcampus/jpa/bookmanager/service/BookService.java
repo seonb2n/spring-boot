@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.beans.ExceptionListener;
 
 
@@ -19,6 +20,7 @@ public class BookService {
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
     //생성자 주입. final 이므로 생성자를 자동으로 생성해줌. bean 이 생성되면서 주입된다.
+    private final EntityManager entityManager;
 
     @Transactional
     void putBookAndAuthor(){
@@ -35,17 +37,23 @@ public class BookService {
         throw new RuntimeException("Error !! Do not commit to db");
     }
 
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void get(Long id) {
         System.out.println(">>> "+ bookRepository.findById(id));
         System.out.println(">>> "+ bookRepository.findAll());
 
+        entityManager.clear();
+
         System.out.println(">>> "+ bookRepository.findById(id));
         System.out.println(">>> "+ bookRepository.findAll());
 
-        Book book = bookRepository.findById(id).get();
-        book.setName("Changed?");
-        bookRepository.save(book);
+        bookRepository.update();
+
+        entityManager.clear();
+
+//        Book book = bookRepository.findById(id).get();
+//        book.setName("Changed?");
+//        bookRepository.save(book);
     }
 
 }

@@ -43,5 +43,4 @@ class BookServiceTest {
 
         System.out.println(">>>" + bookRepository.findAll());
     }
-
 }
