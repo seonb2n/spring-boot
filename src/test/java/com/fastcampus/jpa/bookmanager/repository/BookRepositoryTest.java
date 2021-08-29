@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 public class BookRepositoryTest {
@@ -47,6 +47,30 @@ public class BookRepositoryTest {
         System.out.println("Book : " + user.getReviews().get(0).getBook());
         System.out.println("Publisher : "+ user.getReviews().get(0).getBook().getPublisher());
     }
+
+    @Transactional //lazily loading 방지
+    @Test
+    void bookCascadeTest() {
+        Book book = new Book();
+        book.setName("JPA Course");
+
+        Publisher publisher = new Publisher();
+        publisher.setName("fastcampus");
+
+        book.setPublisher(publisher);
+        bookRepository.save(book);
+
+        System.out.println("books : " + bookRepository.findAll());
+        System.out.println("publishers : "+ publisherRepository.findAll());
+
+        Book book1 = bookRepository.findById(1L).get();
+        book1.getPublisher().setName("slowcampus");
+
+        bookRepository.save(book1);
+
+        System.out.println("publisher : " + publisherRepository.findAll());
+    }
+
 
     private void givenBookAndReview() {
         givenReview(givenUser(), givenBook(givenPublisher()));
