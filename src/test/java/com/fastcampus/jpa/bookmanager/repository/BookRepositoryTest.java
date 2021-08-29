@@ -69,6 +69,13 @@ public class BookRepositoryTest {
         bookRepository.save(book1);
 
         System.out.println("publisher : " + publisherRepository.findAll());
+
+        Book book2 = bookRepository.findById(1L).get();
+        bookRepository.delete(book2);
+
+        System.out.println("books : " + bookRepository.findAll());
+        System.out.println("publishers : " + publisherRepository.findAll());
+
     }
 
 
