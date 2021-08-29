@@ -70,12 +70,37 @@ public class BookRepositoryTest {
 
         System.out.println("publisher : " + publisherRepository.findAll());
 
-        Book book2 = bookRepository.findById(1L).get();
-        bookRepository.delete(book2);
+        Book book3 = bookRepository.findById(1L).get();
+        book3.setPublisher(null);
+        //연관관계가 끊어질 때 삭제를 하지는 않음
+        //orphan removal = true 를 통해서 연관관계가 끊어지면 삭제되게 설정할 수 있다.
+
+        bookRepository.save(book3);
 
         System.out.println("books : " + bookRepository.findAll());
         System.out.println("publishers : " + publisherRepository.findAll());
+        System.out.println("book3-publisher : "+bookRepository.findById(1L).get().getPublisher());
 
+    }
+
+    @Test
+    @Transactional
+    void bookRemoveCascadeTest() {
+        bookRepository.deleteById(1L);
+
+        System.out.println("books : " + bookRepository.findAll());
+        System.out.println("publishers " + publisherRepository.findAll());
+
+        bookRepository.findAll().forEach(book -> System.out.println(book.getPublisher()));
+    }
+
+    @Test
+    void softDelete() {
+        bookRepository.findAll().forEach(System.out::println);
+
+//        bookRepository.findByCategoryIsNull().forEach(System.out::println);
+//        bookRepository.findAllByDeletedFalse().forEach(System.out::println);
+//        bookRepository.findByCategoryIsNullAndDeletedFalse().forEach(System.out::println);
     }
 
 
