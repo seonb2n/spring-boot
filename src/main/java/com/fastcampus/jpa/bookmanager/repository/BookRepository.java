@@ -22,4 +22,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     List<Book> findByCategoryIsNullAndNameEqualsAndCreatedAtGreaterThanEqualAndUpdatedAtGreaterThanEqual(String name, LocalDateTime createdAt
     , LocalDateTime updatedAt);
+
+    @Query(value = "select b from Book b "
+    + "where name = ?1 and createdAt >= ?2 and updatedAt >= ?3 and category is null")
+    List<Book> findByNameRecently(String name, LocalDateTime createdAt, LocalDateTime updatedAt);
 }

@@ -114,6 +114,12 @@ public class BookRepositoryTest {
                         LocalDateTime.now().minusDays(1L),
                         LocalDateTime.now().minusDays(1L)
                 ));
+
+        System.out.println("findByNameRecently : " + bookRepository.findByNameRecently(
+                "JPA COURSE",
+                LocalDateTime.now().minusDays(1L),
+                LocalDateTime.now().minusDays(1L)
+        ));
     }
 
 
