@@ -38,5 +38,5 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             @Param("updatedAt") LocalDateTime updatedAt);
 
     @Query(value = "select b.name as name, b.category as category from Book b")
-    List<Tuple> findBookNameAndCategory();
+    List<BookNameAndCategory> findBookNameAndCategory();
 }
