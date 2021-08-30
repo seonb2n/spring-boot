@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @SpringBootTest
 public class BookRepositoryTest {
     @Autowired
@@ -64,7 +66,7 @@ public class BookRepositoryTest {
         System.out.println("publishers : "+ publisherRepository.findAll());
 
         Book book1 = bookRepository.findById(1L).get();
-        book1.getPublisher().setName("slowcampus");
+        book1.setName("new-book!!");
 
         bookRepository.save(book1);
 
@@ -101,6 +103,17 @@ public class BookRepositoryTest {
 //        bookRepository.findByCategoryIsNull().forEach(System.out::println);
 //        bookRepository.findAllByDeletedFalse().forEach(System.out::println);
 //        bookRepository.findByCategoryIsNullAndDeletedFalse().forEach(System.out::println);
+    }
+
+    @Test
+    void queryTest() {
+        bookRepository.findAll().forEach(System.out::println);
+        System.out.println(">>>" +
+                bookRepository.findByCategoryIsNullAndNameEqualsAndCreatedAtGreaterThanEqualAndUpdatedAtGreaterThanEqual(
+                        "JPA COURSE",
+                        LocalDateTime.now().minusDays(1L),
+                        LocalDateTime.now().minusDays(1L)
+                ));
     }
 
 

@@ -32,7 +32,6 @@ public class Book extends BaseEntity {
 
     private Long authorId;
 
-
     @OneToOne(mappedBy = "book")
     @ToString.Exclude
     private BookReviewInfo bookReviewInfo;
