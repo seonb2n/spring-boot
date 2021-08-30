@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -123,6 +124,11 @@ public class BookRepositoryTest {
 
         bookRepository.findBookNameAndCategory().forEach(b ->
         {System.out.println(b.getName()+ " : " + b.getCategory());});
+
+        bookRepository.findBookNameAndCategory(PageRequest.of(
+                1, 1))
+                .forEach(bookNameAndCategory ->
+                {System.out.println(bookNameAndCategory.getName() + ": "+bookNameAndCategory.getCategory());});
     }
 
 
