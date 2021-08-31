@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Tuple;
 import java.time.LocalDateTime;
@@ -44,4 +45,14 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     @Query(value = "select new com.fastcampus.jpa.bookmanager.repository.dto.BookNameAndCategory(b.name, b.category) from Book b")
     Page<BookNameAndCategory> findBookNameAndCategory(Pageable pageable);
+
+    @Query(value = "select * from book", nativeQuery = true)
+    List<Book> findAllCustom();
+
+    @Transactional
+    @Modifying
+    @Query(value = "update book set category = 'ITmajor'", nativeQuery = true)
+    int updateCategories();
+    //@Modifying 으로 업데이트 쿼리라는 것을 알려줘야 한다.
+    //native Query 이기 때문에 transactional 처리를 해줘야 db에 반영된다.
 }

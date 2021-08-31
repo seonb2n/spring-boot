@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootTest
 public class BookRepositoryTest {
@@ -129,6 +130,26 @@ public class BookRepositoryTest {
                 1, 1))
                 .forEach(bookNameAndCategory ->
                 {System.out.println(bookNameAndCategory.getName() + ": "+bookNameAndCategory.getCategory());});
+    }
+
+    @Test
+    void nativeQueryTest() {
+//        bookRepository.findAll().forEach(System.out::println);
+//
+//        bookRepository.findAllCustom().forEach(System.out::println);
+//        //entity 의 설정이 query 문에 영향을 미치지 못함. 그냥 query 문 자체만 사용된다.
+
+        List<Book> books = bookRepository.findAll();
+
+        for (Book book : books) {
+            book.setCategory("IT major");
+        }
+
+        bookRepository.saveAll(books);
+        //book 하나하나를 찾아서 update 를 한다.
+
+        System.out.println("affected rows : " + bookRepository.updateCategories());
+        bookRepository.findAllCustom().forEach(System.out::println);
     }
 
 
