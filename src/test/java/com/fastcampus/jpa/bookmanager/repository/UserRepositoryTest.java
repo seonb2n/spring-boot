@@ -208,10 +208,25 @@ class UserRepositoryTest {
         user.setHomeAddress(new Address("서울시", "강남구", "강남로 111", "01234"));
         user.setCompanyAddress(new Address("서울시", "서초구", "서초북로 111", "21547"));
 
-        userRepository.saveAndFlush(user);
+        userRepository.save(user);
+
+        User user1 = new User();
+        user1.setName("jayce");
+        user1.setCompanyAddress(null);
+        user1.setHomeAddress(null);
+
+        userRepository.save(user1);
+
+        User user2 = new User();
+        user2.setName("abraham");
+        user2.setCompanyAddress(new Address());
+        user2.setHomeAddress(new Address());
+
+        userRepository.save(user2);
 
         userRepository.findAll().forEach(System.out::println);
         userHistoryRepository.findAll().forEach(System.out::println);
 
+        userRepository.findAllRawRecord().forEach(a -> System.out.println(a.values()));
     }
 }
