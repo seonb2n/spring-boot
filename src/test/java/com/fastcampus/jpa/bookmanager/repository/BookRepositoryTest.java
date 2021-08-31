@@ -4,6 +4,7 @@ import com.fastcampus.jpa.bookmanager.domain.Book;
 import com.fastcampus.jpa.bookmanager.domain.Publisher;
 import com.fastcampus.jpa.bookmanager.domain.Review;
 import com.fastcampus.jpa.bookmanager.domain.User;
+import com.fastcampus.jpa.bookmanager.repository.dto.BookStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -150,6 +151,20 @@ public class BookRepositoryTest {
 
         System.out.println("affected rows : " + bookRepository.updateCategories());
         bookRepository.findAllCustom().forEach(System.out::println);
+
+        System.out.println(bookRepository.showTables());
+    }
+
+    @Test
+    void converterTest() {
+        bookRepository.findAll().forEach(System.out::println);
+
+        Book book = new Book();
+        book.setName("Converter Test ");
+        book.setStatus(new BookStatus(200));
+        bookRepository.save(book);
+
+        System.out.println(bookRepository.findRawRecord().values());
     }
 
 

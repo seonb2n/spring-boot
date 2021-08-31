@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.Tuple;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 
 public interface BookRepository extends JpaRepository<Book, Long> {
@@ -55,4 +56,13 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     int updateCategories();
     //@Modifying 으로 업데이트 쿼리라는 것을 알려줘야 한다.
     //native Query 이기 때문에 transactional 처리를 해줘야 db에 반영된다.
+    // Transactional 은 인터페이스보다 메소드에 선언하는거를 추천함.
+
+    @Query(value = "show tables", nativeQuery = true)
+    List<String> showTables();
+    //JPA 에서 지원하지 않는 특수한 query 생성 가능
+
+    @Query(value = "select * from book order by id desc limit 1", nativeQuery = true)
+    Map<String, Object> findRawRecord();
+
 }

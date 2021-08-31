@@ -43,6 +43,7 @@ public class User extends BaseEntity {
     @NonNull
     private String email;
 
+    //테이블 상 데이터를 숫자가 아니라 string 으로 들어가게
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
