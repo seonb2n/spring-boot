@@ -55,7 +55,7 @@ public class Book extends BaseEntity {
 
     private boolean deleted;
 
-//    @Convert(converter = BookStatusConverter.class)
+    @Convert(converter = BookStatusConverter.class)
     private BookStatus status;
 
     public void addBookAndAuthors(BookAndAuthor... bookAndAuthor) {

@@ -5,7 +5,6 @@ import com.fastcampus.jpa.bookmanager.repository.dto.BookStatus;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-@Converter(autoApply = true)
 public class BookStatusConverter implements AttributeConverter<BookStatus, Integer> {
 
     @Override

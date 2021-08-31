@@ -15,7 +15,7 @@ public class MyEntityListener {
     }
 
     @PreUpdate
-    public void preUpdate(Object o) {
+    public void postUpdate(Object o) {
         if (o instanceof Auditable) {
             ((Auditable) o).setUpdatedAt(LocalDateTime.now());
         }

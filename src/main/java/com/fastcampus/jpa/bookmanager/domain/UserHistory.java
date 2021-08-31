@@ -22,6 +22,15 @@ public class UserHistory extends BaseEntity {
 
     private String email;
 
+    @Enumerated(value = EnumType.STRING)
+    private Gender gender;
+
+//    @Embedded
+//    private Address companyAddress;
+//
+//    @Embedded
+//    private Address homeAddress;
+
     @ManyToOne
     private User user;
 }
