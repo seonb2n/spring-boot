@@ -23,6 +23,8 @@ class CommentServiceTest {
 
         commentService.updateSomething();
 
+        commentService.inserSomething();
+
         commentRepository.findAll().forEach(System.out::println);
     }
 }

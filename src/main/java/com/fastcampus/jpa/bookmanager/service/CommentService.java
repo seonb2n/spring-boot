@@ -23,7 +23,7 @@ public class CommentService {
         }
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public void updateSomething() {
         List<Comment> comments = commentRepository.findAll();
 
@@ -31,9 +31,14 @@ public class CommentService {
             comment.setComment("Bad");
 
 //            commentRepository.save(comment);
-            
 
         }
+    }
+
+    @Transactional
+    public void inserSomething() {
+        Comment comment = commentRepository.findById(1L).get();
+        comment.setComment("What is it ? ");
     }
 
 }
