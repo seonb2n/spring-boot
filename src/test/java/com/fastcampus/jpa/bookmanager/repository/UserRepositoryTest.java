@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,6 +28,8 @@ class UserRepositoryTest {
     private UserRepository userRepository;
     @Autowired
     private UserHistoryRepository userHistoryRepository;
+    @Autowired
+    private EntityManager entityManager;
 
     @Test
     void crud() { // create, read, update, delete
@@ -223,6 +226,8 @@ class UserRepositoryTest {
         user2.setHomeAddress(new Address());
 
         userRepository.save(user2);
+
+        entityManager.clear();
 
         userRepository.findAll().forEach(System.out::println);
         userHistoryRepository.findAll().forEach(System.out::println);
